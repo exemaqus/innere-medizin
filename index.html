@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f4c5c">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="stylesheet" href="style.css">
+<title>BGA-Check</title>
+</head>
+<body>
+<header>
+  <h1>BGA-Check</h1>
+  <p class="sub">Säure-Basen · Anionenlücke · Oxygenierung</p>
+</header>
+
+<main>
+  <form id="form" autocomplete="off" novalidate>
+    <section>
+      <h2>Säure-Basen</h2>
+      <div class="row">
+        <label>pH<input id="pH" inputmode="decimal" placeholder="7,40"></label>
+        <label>pCO₂ <span class="unit" id="u-pco2">mmHg</span><input id="pCO2" inputmode="decimal" placeholder="40"></label>
+        <label>HCO₃⁻ <span class="unit">mmol/l</span><input id="HCO3" inputmode="decimal" placeholder="24"></label>
+      </div>
+      <div class="toggle">
+        <span>Einheit pCO₂/pO₂:</span>
+        <label class="radio"><input type="radio" name="unit" value="mmHg" checked> mmHg</label>
+        <label class="radio"><input type="radio" name="unit" value="kPa"> kPa</label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Elektrolyte (optional)</h2>
+      <div class="row">
+        <label>Na⁺ <span class="unit">mmol/l</span><input id="Na" inputmode="decimal" placeholder="140"></label>
+        <label>Cl⁻ <span class="unit">mmol/l</span><input id="Cl" inputmode="decimal" placeholder="104"></label>
+        <label>Albumin <span class="unit">g/l</span><input id="Albumin" inputmode="decimal" placeholder="40"></label>
+        <label>Laktat <span class="unit">mmol/l</span><input id="Laktat" inputmode="decimal" placeholder="1,0"></label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Oxygenierung (optional)</h2>
+      <div class="row">
+        <label>pO₂ <span class="unit" id="u-po2">mmHg</span><input id="pO2" inputmode="decimal" placeholder="90"></label>
+        <label>FiO₂ <span class="unit">% oder 0,21–1,0</span><input id="FiO2" inputmode="decimal" placeholder="21"></label>
+      </div>
+    </section>
+
+    <div class="buttons">
+      <button type="button" id="reset" class="secondary">Zurücksetzen</button>
+    </div>
+  </form>
+
+  <section id="result" aria-live="polite" hidden>
+    <h2>Auswertung</h2>
+    <ul id="befunde"></ul>
+    <div id="hinweise" class="warn" hidden></div>
+    <details id="werte-box" hidden>
+      <summary>Berechnete Werte</summary>
+      <dl id="werte"></dl>
+    </details>
+  </section>
+
+  <p class="disclaimer">Orientierungshilfe nach Standardformeln (Winter, Henderson, Kompensationsregeln). Ersetzt nicht die klinische Beurteilung. Es werden keine Daten gespeichert oder übertragen. Bitte keine identifizierbaren Patientendaten eingeben.</p>
+</main>
+
+<script src="app-logic.js"></script>
+<script src="ui.js"></script>
+</body>
+</html>
